@@ -95,8 +95,8 @@ namespace ZP.CSharp.Music
                     new Note(120, Pitch.D5, Duration.Quaver | Duration.SemiQuaver),
                     new Note(120, Pitch.C5, Duration.SemiQuaver),
                     new Note(120, Pitch.C5),
-                    new Note(120, Pitch.B4, Duration.Minim),
-                    new Note(120, Pitch.Rest),
+                    new Note(120, Pitch.B4),
+                    new Note(120, Pitch.Rest, Duration.Crotchet | Duration.Quaver),
                     new Note(120, Pitch.G5, Duration.SemiQuaver),
                     new Note(120, Pitch.G5, Duration.Minim | Duration.Quaver),
                     new Note(120, Pitch.G5, Duration.Quaver),
@@ -128,7 +128,7 @@ namespace ZP.CSharp.Music
                     new Note(120, Pitch.E5, Duration.SemiQuaver),
                     new Note(120, Pitch.F5, Duration.Quaver | Duration.SemiQuaver),
                     new Note(120, Pitch.D5, Duration.SemiQuaver),
-                    new Note(120, Pitch.C5, Duration.Minim | Duration.Crotchet)
+                    new Note(120, Pitch.C5, Duration.Minim)
                 )
             );
         }
