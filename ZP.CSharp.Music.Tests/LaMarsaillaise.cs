@@ -124,7 +124,7 @@ namespace ZP.CSharp.Music
                     new Note(120, Pitch.Rest),
                     new Note(120, Pitch.A5),
                     new Note(120, Pitch.G5, Duration.Minim),
-                    new Note(120, Pitch.Rest, Duration.Quaver),
+                    new Note(120, Pitch.Rest, Duration.Quaver | Duration.SemiQuaver),
                     new Note(120, Pitch.E5, Duration.SemiQuaver),
                     new Note(120, Pitch.F5, Duration.Quaver | Duration.SemiQuaver),
                     new Note(120, Pitch.D5, Duration.SemiQuaver),
