@@ -5,16 +5,18 @@ namespace ZP.CSharp.Music
 {
     public static class Player
     {
-        public static void Play(IPlayable playable)
+        public static void Play (IPlayable playable)
         {
-            new Thread(new ThreadStart(() => {
-                using (var output = new DirectSoundOut())
-                {
-                    output.Init(playable.GetWaves());
-                    output.Play();
-                    while (output.PlaybackState == PlaybackState.Playing) {}
-                }
-            })).Start();
+            using (var output = new DirectSoundOut())
+            {
+                output.Init(playable.GetWaves());
+                output.Play();
+                while (output.PlaybackState == PlaybackState.Playing) {}
+            }
+        }
+        public static async Task PlayAsync(IPlayable playable)
+        {
+            await Task.Run(() => Play(playable));
         }
     }
 }
