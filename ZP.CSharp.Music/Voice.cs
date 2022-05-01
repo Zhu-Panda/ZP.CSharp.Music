@@ -7,32 +7,38 @@ namespace ZP.CSharp.Music
     public class Voice : IPlayable
     {
         public List<INote> Notes;
-        private Voice(List<INote> notes)
+        public Voice(List<INote> notes)
         {
             this.Notes = notes;
         }
         public Voice(params INote[] notes)
             : this(notes.ToList())
         {}
+        public void AddNote(INote note)
+        {
+            this.AddNotes(note);
+        }
+        public void AddNotes(List<INote> notes)
+        {
+            foreach (var note in notes)
+            {
+                this.Notes.Add(note);
+            }
+        }
+        public void AddNotes(params INote[] notes)
+        {
+            this.AddNotes(notes.ToList());
+        }
         public ISampleProvider GetWaves()
         {
-            var waves = new List<ISampleProvider>();
-            foreach (var note in this.Notes)
+            var notes = new List<INote>(this.Notes);
+            var waves = notes.First().GetWaves();
+            notes.RemoveAt(0);
+            foreach (var note in notes)
             {
-                waves.Add(note.GetWaves());
+                waves = waves.FollowedBy(note.GetWaves());
             }
-            return new ConcatenatingSampleProvider(waves);
-        }
-        public void Play()
-        {
-            new Thread(new ThreadStart(() => {
-                using (var output = new DirectSoundOut())
-                {
-                    output.Init(this.GetWaves());
-                    output.Play();
-                    while (output.PlaybackState == PlaybackState.Playing) {}
-                }
-            })).Start();
+            return waves;
         }
     }
 }
