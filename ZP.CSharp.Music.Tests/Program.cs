@@ -17,7 +17,7 @@ namespace ZP.CSharp.Music.Tests
                 result switch
                 {
                     1 => LaMarseillaise.GetPiece(),
-                    _ => new Piece()
+                    _ => Piece.Empty
                 }
             );
             Console.WriteLine("Done.");
