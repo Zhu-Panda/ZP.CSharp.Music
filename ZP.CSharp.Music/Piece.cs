@@ -6,8 +6,10 @@ namespace ZP.CSharp.Music
 {
     public class Piece : IPlayable
     {
+        public static Piece Empty => new Piece(new Voice(new Note(120, Pitch.Rest)));
+        public double BPM {get; set;}
         public List<Voice> Voices;
-        private Piece(List<Voice> voices)
+        public Piece(List<Voice> voices)
         {
             this.Voices = voices;
         }
@@ -22,17 +24,6 @@ namespace ZP.CSharp.Music
                 waves.Add(voice.GetWaves());
             }
             return new MixingSampleProvider(waves);
-        }
-        public void Play()
-        {
-            new Thread(new ThreadStart(() => {
-                using (var output = new DirectSoundOut())
-                {
-                    output.Init(this.GetWaves());
-                    output.Play();
-                    while (output.PlaybackState == PlaybackState.Playing) {}
-                }
-            })).Start();
         }
     }
 }

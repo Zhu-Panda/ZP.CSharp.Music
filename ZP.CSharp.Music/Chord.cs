@@ -9,14 +9,20 @@ namespace ZP.CSharp.Music
     public class Chord : IEnumerable<Note>, INote
     {
         private List<Note> Notes;
-        public int Duration {get; set;}
-        private Chord(List<Note> notes)
+        public Duration Duration {get; set;}
+        public double BPM {get; set;}
+        public Chord(double bpm, List<Note> notes)
         {
+            this.BPM = bpm;
             Notes = notes;
             this.Duration = this.Notes.First().Duration;
+            foreach (var note in this.Notes)
+            {
+                note.BPM = this.BPM;
+            }
         }
-        public Chord(params Note[] notes)
-            : this(notes.ToList())
+        public Chord(double bpm, params Note[] notes)
+            : this(bpm, notes.ToList())
         {}
         public IEnumerator<Note> GetEnumerator()
         {
@@ -35,17 +41,6 @@ namespace ZP.CSharp.Music
                 waves.Add(note.GetWaves());
             }
             return new MixingSampleProvider(waves);
-        }
-        public void Play()
-        {
-            new Thread(new ThreadStart(() => {
-                using (var output = new DirectSoundOut())
-                {
-                    output.Init(this.GetWaves());
-                    output.Play();
-                    while (output.PlaybackState == PlaybackState.Playing) {}
-                }
-            })).Start();
         }
     }
     public class NoteEnumerator : IEnumerator<Note>

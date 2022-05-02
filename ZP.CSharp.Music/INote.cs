@@ -5,6 +5,7 @@ namespace ZP.CSharp.Music
 {
     public interface INote : IPlayable
     {
-        public int Duration {get; set;}
+        public Duration Duration {get; set;}
+        public double BPM {get; set;}
     }
 }

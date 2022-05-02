@@ -7,15 +7,20 @@ namespace ZP.CSharp.Music.Tests
     {
         public static void Main()
         {
-            new Piece(
-                new Voice(
-                    new Note(Pitch.Rest),
-                    new Note(Pitch.E4)
-                ),
-                new Voice(
-                    new Note(Pitch.C4, 3000)
-                )
-            ).Play();
+            Console.WriteLine(
+                "Choose song:\n" +
+                "1: La Marseillaise"
+            );
+            var result = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Playing...");
+            Player.Play(
+                result switch
+                {
+                    1 => new LaMarseillaise().GetPiece(),
+                    _ => Piece.Empty
+                }
+            );
+            Console.WriteLine("Done.");
         }
     }
 }

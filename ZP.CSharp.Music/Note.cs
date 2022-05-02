@@ -8,9 +8,11 @@ namespace ZP.CSharp.Music
     public class Note : INote
     {
         public Pitch Pitch;
-        public int Duration {get; set;}
-        public Note(Pitch pitch, int duration = 1000)
+        public Duration Duration {get; set;}
+        public double BPM {get; set;}
+        public Note(double bpm, Pitch pitch, Duration duration = Duration.Crotchet)
         {
+            this.BPM = bpm;
             this.Pitch = pitch;
             this.Duration = duration;
         }
@@ -21,18 +23,22 @@ namespace ZP.CSharp.Music
                 Gain = 0.2,
                 Frequency = PitchFinder.GetPitch(this.Pitch),
                 Type = SignalGeneratorType.Triangle
-            }.Take(TimeSpan.FromMilliseconds(this.Duration * 0.999));
-        }
-        public void Play()
-        {
-            new Thread(new ThreadStart(() => {
-                using (var output = new DirectSoundOut())
-                {
-                    output.Init(this.GetWaves());
-                    output.Play();
-                    while (output.PlaybackState == PlaybackState.Playing) {}
-                }
-            })).Start();
+            }.Take(
+                TimeSpan.FromMilliseconds(
+                    DurationFinder.GetDuration(this.BPM, this.Duration) * 0.95
+                )
+            ).FollowedBy(
+                new SignalGenerator()
+                { 
+                    Gain = 0.2,
+                    Frequency = PitchFinder.GetPitch(Pitch.Rest),
+                    Type = SignalGeneratorType.Triangle
+                }.Take(
+                    TimeSpan.FromMilliseconds(
+                        DurationFinder.GetDuration(this.BPM, this.Duration) * 0.05
+                    )
+                )
+            );
         }
     }
 }
