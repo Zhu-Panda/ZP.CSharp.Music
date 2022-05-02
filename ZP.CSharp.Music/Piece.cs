@@ -6,8 +6,8 @@ namespace ZP.CSharp.Music
 {
     public class Piece : IPlayable
     {
-        public static Piece Empty => new Piece(new Voice(new Note(120, Pitch.Rest)));
-        public double BPM {get; set;}
+        public static Piece Empty => new Piece(new Voice(new Note(Pitch.Rest)));
+        //public double BPM {get; set;}
         public List<Voice> Voices;
         public Piece(List<Voice> voices)
         {

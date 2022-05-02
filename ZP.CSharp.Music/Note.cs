@@ -10,11 +10,14 @@ namespace ZP.CSharp.Music
         public Pitch Pitch;
         public Duration Duration {get; set;}
         public double BPM {get; set;}
-        public Note(double bpm, Pitch pitch, Duration duration = Duration.Crotchet)
+        public Note(Pitch pitch, Duration duration = Duration.Crotchet)
         {
-            this.BPM = bpm;
             this.Pitch = pitch;
             this.Duration = duration;
+        }
+        public void SetBPM(double bpm)
+        {
+            this.BPM = bpm;
         }
         public ISampleProvider GetWaves()
         {

@@ -11,9 +11,8 @@ namespace ZP.CSharp.Music
         private List<Note> Notes;
         public Duration Duration {get; set;}
         public double BPM {get; set;}
-        public Chord(double bpm, List<Note> notes)
+        public Chord(List<Note> notes)
         {
-            this.BPM = bpm;
             Notes = notes;
             this.Duration = this.Notes.First().Duration;
             foreach (var note in this.Notes)
@@ -21,9 +20,13 @@ namespace ZP.CSharp.Music
                 note.BPM = this.BPM;
             }
         }
-        public Chord(double bpm, params Note[] notes)
-            : this(bpm, notes.ToList())
+        public Chord(params Note[] notes)
+            : this(notes.ToList())
         {}
+        public void SetBPM(double bpm)
+        {
+            this.BPM = bpm;
+        }
         public IEnumerator<Note> GetEnumerator()
         {
             return new NoteEnumerator(this.Notes);

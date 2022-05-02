@@ -7,6 +7,7 @@ namespace ZP.CSharp.Music
     public class Voice : IPlayable
     {
         public List<INote> Notes;
+        public double BPM;
         public Voice(List<INote> notes)
         {
             this.Notes = notes;
@@ -32,10 +33,26 @@ namespace ZP.CSharp.Music
         public ISampleProvider GetWaves()
         {
             var notes = new List<INote>(this.Notes);
+            if (notes.First() is BPM bpmFirst)
+            {
+                this.BPM = bpmFirst.Value;
+            }
+            else
+            {
+                notes.First().SetBPM(this.BPM);
+            }
             var waves = notes.First().GetWaves();
             notes.RemoveAt(0);
             foreach (var note in notes)
             {
+                if (note is BPM bpm)
+                {
+                    this.BPM = bpm.Value;
+                }
+                else
+                {
+                    note.SetBPM(this.BPM);
+                }
                 waves = waves.FollowedBy(note.GetWaves());
             }
             return waves;
