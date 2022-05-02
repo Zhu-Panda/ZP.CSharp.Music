@@ -6,6 +6,6 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="../ZP.CSharp.Music/ZP.CSharp.Music.csproj" /> 
+    <PackageReference Include="ZP.CSharp.Music" Version="0.0.2" />
   </ItemGroup>
 </Project>
