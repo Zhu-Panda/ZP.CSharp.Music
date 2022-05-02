@@ -5,6 +5,6 @@ namespace ZP.CSharp.Music
 {
     public interface IPieceProvider
     {
-        public static IPlayable GetPiece() => throw new NotImplementedException();
+        public Piece GetPiece();
     }
 }

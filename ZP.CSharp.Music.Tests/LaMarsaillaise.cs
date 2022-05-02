@@ -4,7 +4,7 @@ namespace ZP.CSharp.Music
 {
     public class LaMarseillaise : IPieceProvider
     {
-        public static Piece GetPiece()
+        public Piece GetPiece()
         {
             return new Piece(
                 new Voice(

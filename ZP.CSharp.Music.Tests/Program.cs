@@ -16,7 +16,7 @@ namespace ZP.CSharp.Music.Tests
             Player.Play(
                 result switch
                 {
-                    1 => LaMarseillaise.GetPiece(),
+                    1 => new LaMarseillaise().GetPiece(),
                     _ => Piece.Empty
                 }
             );
