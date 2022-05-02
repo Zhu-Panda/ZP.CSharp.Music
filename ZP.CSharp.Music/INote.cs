@@ -7,5 +7,6 @@ namespace ZP.CSharp.Music
     {
         public Duration Duration {get; set;}
         public double BPM {get; set;}
+        public void SetBPM(double bpm);
     }
 }
