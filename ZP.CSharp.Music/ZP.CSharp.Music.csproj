@@ -4,12 +4,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <PackageId>ZP.CSharp.Music</PackageId>
-    <Version>0.0.1</Version>
+    <Version>0.0.2</Version>
     <Authors>Zhu Panda</Authors>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageReadmeFile>Package README.md</PackageReadmeFile>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NAudio.Core" Version="2.0.0" />
-    <None Include="../README.md" Pack="true" PackagePath="/"/>
+    <None Include="../Package README.md" Pack="true" PackagePath="/"/>
   </ItemGroup>
 </Project>
