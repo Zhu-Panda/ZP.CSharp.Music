@@ -1,0 +1,93 @@
+using System;
+using ZP.CSharp.Music;
+namespace ZP.CSharp.Music
+{
+    public class PreußensGloria : IPieceProvider
+    {
+        public Piece GetPiece()
+        {
+            return new Piece(
+                new Voice(
+                    new BPM(240),
+                    new Note(Pitch.G4, Duration.Quaver, "Die "),
+                    new Note(Pitch.G4, Duration.Quaver),
+                    new Note(Pitch.C5, Duration.Crotchet, "Fah"),
+                    new Note(Pitch.G4, Duration.Crotchet, "ne "),
+                    new Note(Pitch.E4, Duration.Crotchet, "hoch, "),
+                    new Note(Pitch.G4, Duration.Crotchet, "mit "),
+                    new Note(Pitch.E4, Duration.Crotchet, "Schwur "),
+                    new Note(Pitch.G4, Duration.Crotchet, "vo"),
+                    new Note(Pitch.C5, Duration.Crotchet, "ran!\n"),
+                    new Note(Pitch.E5, Duration.Crotchet, "Mar"),
+                    new Note(Pitch.D5, Duration.Crotchet, "schie"),
+                    new Note(Pitch.D5, Duration.Quaver, "ren, "),
+                    new Note(Pitch.D5, Duration.Quaver, "wir "),
+                    new Note(Pitch.D5, Duration.Crotchet, "Preu"),
+                    new Note(Pitch.C5, Duration.Quaver, "ßen "),
+                    new Note(Pitch.D5, Duration.Quaver, "nun "),
+                    new Note(Pitch.E5, Duration.Crotchet, "Mann "),
+                    new Note(Pitch.D5, Duration.Crotchet, "für "),
+                    new Note(Pitch.C5, Duration.Crotchet, "Mann!\n"),
+                    new Note(Pitch.G4, Duration.Quaver),
+                    new Note(Pitch.G4, Duration.Quaver),
+                    new Note(Pitch.C5),
+                    new Note(Pitch.G4),
+                    new Note(Pitch.E4),
+                    new Note(Pitch.G4),
+                    new Note(Pitch.E4),
+                    new Note(Pitch.G4),
+                    new Note(Pitch.C5),
+                    new Note(Pitch.E5),
+                    new Note(Pitch.D5),
+                    new Note(Pitch.D5, Duration.Quaver),
+                    new Note(Pitch.D5, Duration.Quaver),
+                    new Note(Pitch.D5),
+                    new Note(Pitch.E5, Duration.Quaver),
+                    new Note(Pitch.D5, Duration.Quaver),
+                    new Note(Pitch.C5, Duration.Minim),
+                    new Note(Pitch.Rest),
+                    new Repeat(2,
+                        new BPM(240),
+                        new Note(Pitch.E5),
+                        new Note(Pitch.D5),
+                        new Note(Pitch.G4, Duration.Quaver),
+                        new Note(Pitch.G4, Duration.Quaver),
+                        new Note(Pitch.G4),
+                        new Note(Pitch.E5),
+                        new Note(Pitch.D5),
+                        new Note(Pitch.G4, Duration.Quaver),
+                        new Note(Pitch.G4, Duration.Quaver),
+                        new Note(Pitch.G4),
+                        new Note(Pitch.E5),
+                        new Note(Pitch.D5),
+                        new Note(Pitch.E5),
+                        new Note(Pitch.D5),
+                        new Note(Pitch.E5),
+                        new Note(Pitch.D5),
+                        new Note(Pitch.G4, Duration.Quaver),
+                        new Note(Pitch.G4, Duration.Quaver),
+                        new Note(Pitch.G4),
+                        new Note(Pitch.G4, Duration.Quaver),
+                        new Note(Pitch.G4, Duration.Quaver),
+                        new Note(Pitch.C5),
+                        new Note(Pitch.G4),
+                        new Note(Pitch.E4),
+                        new Note(Pitch.G4),
+                        new Note(Pitch.E4),
+                        new Note(Pitch.G4),
+                        new Note(Pitch.C5),
+                        new Note(Pitch.E5),
+                        new Note(Pitch.D5),
+                        new Note(Pitch.D5, Duration.Quaver),
+                        new Note(Pitch.D5, Duration.Quaver),
+                        new Note(Pitch.D5),
+                        new Note(Pitch.E5, Duration.Quaver),
+                        new Note(Pitch.D5, Duration.Quaver),
+                        new Note(Pitch.C5, Duration.Minim),
+                        new Note(Pitch.Rest)
+                    )
+                )
+            );
+        }
+    }
+}
