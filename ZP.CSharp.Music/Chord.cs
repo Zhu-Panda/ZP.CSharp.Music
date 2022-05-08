@@ -11,13 +11,16 @@ namespace ZP.CSharp.Music
         private List<Note> Notes;
         public Duration Duration {get; set;}
         public double BPM {get; set;}
+        public List<IMusicalEntity> ChildEntities {get; set;}
+        public string Lyric {get; set;}
         public Chord(List<Note> notes)
         {
             Notes = notes;
             this.Duration = this.Notes.First().Duration;
+            this.Lyric = this.Notes.First().Lyric;
             foreach (var note in this.Notes)
             {
-                note.BPM = this.BPM;
+                note.SetBPM(this.BPM);
             }
         }
         public Chord(params Note[] notes)
@@ -44,6 +47,11 @@ namespace ZP.CSharp.Music
                 waves.Add(note.GetWaves());
             }
             return new MixingSampleProvider(waves);
+        }
+
+        public string GetLyrics()
+        {
+            throw new NotImplementedException();
         }
     }
     public class NoteEnumerator : IEnumerator<Note>

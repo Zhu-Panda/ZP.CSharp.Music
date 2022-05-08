@@ -10,10 +10,14 @@ namespace ZP.CSharp.Music
         public Pitch Pitch;
         public Duration Duration {get; set;}
         public double BPM {get; set;}
-        public Note(Pitch pitch, Duration duration = Duration.Crotchet)
+        public List<IMusicalEntity> ChildEntities {get; set;}
+        public string Lyric {get; set;}
+
+        public Note(Pitch pitch, Duration duration = Duration.Crotchet, string lyric = "")
         {
             this.Pitch = pitch;
             this.Duration = duration;
+            this.Lyric = lyric;
         }
         public void SetBPM(double bpm)
         {
@@ -43,5 +47,6 @@ namespace ZP.CSharp.Music
                 )
             );
         }
+        public string GetLyrics() => this.Lyric;
     }
 }
