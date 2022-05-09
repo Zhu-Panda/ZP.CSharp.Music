@@ -7,13 +7,14 @@ namespace ZP.CSharp.Music
     public class BPM : IMusicalEntity
     {
         public double Value;
-        public BPM(double bpm)
+        public BPM(double bpm, Duration duration = Duration.Crotchet)
         {
-            this.Value = bpm;
+            var scaledBPM = (bpm * (int) duration) / (int) Duration.Crotchet;
+            this.Value = scaledBPM;
         }
 
         public Duration Duration {get; set;}
-        public List<IMusicalEntity> ChildEntities {get; set;}
+        public List<IMusicalEntity> ChildEntities {get; set;} = new List<IMusicalEntity>();
         public string Lyric {get; set;} = "";
         public ISampleProvider GetWaves()
         {
