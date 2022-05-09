@@ -12,7 +12,7 @@ namespace ZP.CSharp.Music.Tests.BPMTests
         [InlineData(7890, Duration.Minim | Duration.Crotchet, 23670)]
         public void BPMValueScalesWithNoteValue(double suppliedBPM, Duration duration, double scaledBPM)
         {
-            var bpm = new BPM(suppliedBPM);
+            var bpm = new BPM(suppliedBPM, duration);
             Assert.Equal(scaledBPM, bpm.Value);
         }
     }
