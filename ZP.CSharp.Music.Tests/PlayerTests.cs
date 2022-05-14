@@ -1,5 +1,6 @@
 using System;
 using Xunit;
+using NAudio.Wave;
 using ZP.CSharp.Music;
 using ZP.CSharp.Music.Tests.PlayerTests;
 namespace ZP.CSharp.Music.Tests.PlayerTests
@@ -65,9 +66,19 @@ namespace ZP.CSharp.Music.Tests.PlayerTests
         [Theory]
         [MemberData(nameof(CMajorScale))]
         [MemberData(nameof(CMajorScaleBlindOctave))]
-        public void PlayerOutputsNoteSound(IPlayable seq)
+        [Trait("PlaysSound", "true")]
+        public void PlayerOutputsIPlayableSound(IPlayable seq)
         {
             Player.Play(seq);
+        }
+        [Theory]
+        [InlineData("C Major Scale.wav")]
+        [InlineData("C Major Scale Blind Octave.wav")]
+        [Trait("PlaysSound", "true")]
+        public void PlayerOutputsFileSound(string file)
+        {
+            var sounds = new WaveFileReader(file).ToSampleProvider();
+            Player.PlayRaw(sounds);
         }
     }
 }
