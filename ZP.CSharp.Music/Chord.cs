@@ -6,22 +6,17 @@ using NAudio.Wave.SampleProviders;
 using ZP.CSharp.Music;
 namespace ZP.CSharp.Music
 {
-    public class Chord : IEnumerable<Note>, INote
+    public class Chord : INote
     {
-        private List<Note> Notes;
         public Duration Duration {get; set;}
         public double BPM {get; set;}
         public List<IMusicalEntity> ChildEntities {get; set;}
         public string Lyric {get; set;}
         public Chord(List<Note> notes)
         {
-            Notes = notes;
-            this.Duration = this.Notes.First().Duration;
-            this.Lyric = this.Notes.First().Lyric;
-            foreach (var note in this.Notes)
-            {
-                note.SetBPM(this.BPM);
-            }
+            this.ChildEntities = notes.Cast<IMusicalEntity>().ToList();
+            this.Duration = this.ChildEntities.Cast<Note>().First().Duration;
+            this.Lyric = this.ChildEntities.Cast<Note>().First().Lyric;
         }
         public Chord(params Note[] notes)
             : this(notes.ToList())
@@ -29,61 +24,21 @@ namespace ZP.CSharp.Music
         public void SetBPM(double bpm)
         {
             this.BPM = bpm;
-        }
-        public IEnumerator<Note> GetEnumerator()
-        {
-            return new NoteEnumerator(this.Notes);
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return this.GetEnumerator();
+            foreach (var note in this.ChildEntities.Cast<Note>())
+            {
+                note.SetBPM(this.BPM);
+            }
         }
         public ISampleProvider GetWaves()
         {
             var waves = new List<ISampleProvider>();
-            foreach (var note in this.Notes)
+            foreach (var note in this.ChildEntities)
             {
                 waves.Add(note.GetWaves());
             }
             return new MixingSampleProvider(waves);
         }
 
-        public string GetLyrics()
-        {
-            throw new NotImplementedException();
-        }
-    }
-    public class NoteEnumerator : IEnumerator<Note>
-    {
-        private int Position = -1;
-        private readonly List<Note> Notes;
-        public Note Current = null!;
-        Note IEnumerator<Note>.Current => this.Current;
-        object IEnumerator.Current => this.Current;
-
-        public NoteEnumerator(List<Note> notes)
-        {
-            this.Notes = notes;
-        }
-        public bool MoveNext()
-        {
-            try
-            {
-                this.Current = this.Notes[++this.Position];
-                return true;
-            }
-            catch (IndexOutOfRangeException)
-            {
-                this.Current = null!;
-                return false;
-            }
-        }
-        public void Reset()
-        {
-            this.Position = -1;
-        }
-        public void Dispose()
-        {}
+        public string GetLyrics() => this.Lyric;
     }
 }
