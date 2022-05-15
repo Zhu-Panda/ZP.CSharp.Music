@@ -63,11 +63,27 @@ namespace ZP.CSharp.Music.Tests.PlayerTests
                 };
             }
         }
+        public static TheoryData<IPlayable> CMajorChord
+        {
+            get
+            {
+                return new TheoryData<IPlayable>()
+                {
+                    new Voice(
+                        new BPM(120, Duration.Minim),
+                        new Chord(new Note(Pitch.C4), new Note(Pitch.E4), new Note(Pitch.G4)),
+                        new Chord(new Note(Pitch.E4), new Note(Pitch.G4), new Note(Pitch.C5)),
+                        new Chord(new Note(Pitch.G4), new Note(Pitch.C5), new Note(Pitch.E5))
+                    )
+                };
+            }
+        }
         [Theory]
         [MemberData(nameof(CMajorScale))]
         [MemberData(nameof(CMajorScaleBlindOctave))]
+        [MemberData(nameof(CMajorChord))]
         [Trait("PlaysSound", "true")]
-        public void PlayerOutputsIPlayableSound(IPlayable seq)
+        public void PlayerOutputsSoundFromIPlayable(IPlayable seq)
         {
             Player.Play(seq);
         }
@@ -75,7 +91,7 @@ namespace ZP.CSharp.Music.Tests.PlayerTests
         [InlineData("C Major Scale.wav")]
         [InlineData("C Major Scale Blind Octave.wav")]
         [Trait("PlaysSound", "true")]
-        public void PlayerOutputsFileSound(string file)
+        public void PlayerOutputsSoundFromFile(string file)
         {
             var sounds = new WaveFileReader(file).ToSampleProvider();
             Player.PlayRaw(sounds);
