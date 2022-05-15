@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using ZP.CSharp.Music;
 namespace ZP.CSharp.Music
 {
-    public interface IPieceProvider
+    public interface IScoreProvider
     {
-        public Piece GetPiece();
+        public Score GetScore();
     }
 }

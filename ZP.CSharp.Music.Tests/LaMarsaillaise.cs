@@ -2,11 +2,11 @@ using System;
 using ZP.CSharp.Music;
 namespace ZP.CSharp.Music
 {
-    public class LaMarseillaise : IPieceProvider
+    public class LaMarseillaise : IScoreProvider
     {
-        public Piece GetPiece()
+        public Score GetScore()
         {
-            return new Piece(
+            return new Score(
                 new Voice(
                     new BPM(120),
                     new Note(Pitch.G4, Duration.SemiQuaver),

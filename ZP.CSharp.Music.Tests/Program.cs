@@ -14,14 +14,14 @@ namespace ZP.CSharp.Music.Tests
             );
             var result = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Playing...");
-            var piece = result switch
+            var score = result switch
             {
-                1 => new LaMarseillaise().GetPiece(),
-                2 => new PreußensGloria().GetPiece(),
-                _ => Piece.Empty
+                1 => new LaMarseillaise().GetScore(),
+                2 => new PreußensGloria().GetScore(),
+                _ => Score.Empty
             };
-            var play = Player.PlayAsync(piece);
-            var write = Writer.WriteAsync(piece, (str) => {Console.WriteLine(str);});
+            var play = Player.PlayAsync(score);
+            var write = Writer.WriteAsync(score, (str) => {Console.WriteLine(str);});
             await Task.WhenAll(play, write);
             Console.WriteLine("Done.");
         }

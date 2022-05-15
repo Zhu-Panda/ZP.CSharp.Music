@@ -4,17 +4,17 @@ using NAudio.Wave.SampleProviders;
 using ZP.CSharp.Music;
 namespace ZP.CSharp.Music
 {
-    public class Piece : IPlayable
+    public class Score : IPlayable
     {
-        public static Piece Empty => new Piece(new Voice(new Note(Pitch.Rest)));
+        public static Score Empty => new Score(new Voice(new Note(Pitch.Rest)));
         public string Lyric {get; set;} = "";
         //public double BPM {get; set;}
         public List<IMusicalEntity> ChildEntities;
-        public Piece(List<IMusicalEntity> entities)
+        public Score(List<IMusicalEntity> entities)
         {
             this.ChildEntities = entities;
         }
-        public Piece(params IMusicalEntity[] entities)
+        public Score(params IMusicalEntity[] entities)
             : this(entities.ToList())
         {}
         public string GetLyrics()
