@@ -10,7 +10,7 @@ namespace ZP.CSharp.Music.Tests.WriterTests
         [InlineData("1, 2, 3!")]
         [InlineData("4, 5, 6!")]
         [InlineData("7, 8, 9, 0!")]
-        public void WriterOutputsNoteLyric(string lyric)
+        public void WriterOutputsLyric(string lyric)
         {
             var note = new Note(Pitch.Rest, Duration.Crotchet, lyric);
             var result = string.Empty;
