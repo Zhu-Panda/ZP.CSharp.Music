@@ -6,5 +6,6 @@ namespace ZP.CSharp.Music
     public interface IPlayable
     {
         public ISampleProvider GetWaves();
+        public string GetLyrics();
     }
 }
